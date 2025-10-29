@@ -26,3 +26,10 @@ export const ClaimSchema = z.object({
 });
 export type Claim = z.infer<typeof ClaimSchema>;
 
+export const ClaimResponseSchema = z.object({
+    approved: z.boolean(),
+    payout: z.number().nonnegative(),
+    reasonCode: z.enum(["APPROVED", "POLICY_INACTIVE", "NOT_COVERED", "ZERO_PAYOUT"])
+});
+export type ClaimResult = z.infer<typeof ClaimResponseSchema>;
+

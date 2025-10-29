@@ -1,6 +1,7 @@
 import { IncidentTypeSchema } from "../src/types/claimSchemas";
 import { PolicySchema } from "../src/types/claimSchemas";
 import { ClaimSchema } from "../src/types/claimSchemas";
+import { ClaimResponseSchema} from "../src/types/claimSchemas";
 
 describe("IncidentTypeSchema", () => {
     it("should validate valid incident types", () => {
@@ -143,3 +144,41 @@ describe("ClaimSchema", () => {
         expect(() => ClaimSchema.parse(bad as any)).toThrow();
     });
 })
+
+describe("ClaimResponseSchema", () => {
+    it("validates a valid claim response", () => {
+        const validResponse = {
+            approved: true,
+            payout: 2000,
+            reasonCode: "APPROVED"
+        };
+        expect(() => ClaimResponseSchema.parse(validResponse)).not.toThrow();
+    });
+
+    it("throws for negative payout", () => {
+        const bad = {
+            approved: false,
+            payout: -100,
+            reasonCode: "POLICY_INACTIVE"
+        };
+        expect(() => ClaimResponseSchema.parse(bad)).toThrow();
+    });
+
+    it("throws when reasonCode is invalid", () => {
+        const bad = {
+            approved: true,
+            payout: 1500,
+            reasonCode: "INVALID_CODE"
+        };
+        expect(() => ClaimResponseSchema.parse(bad)).toThrow();
+    });
+
+    it("throws when required fields are missing", () => {
+        const bad = {
+            approved: true,
+            payout: 1000
+        };
+        // missing reasonCode
+        expect(() => ClaimResponseSchema.parse(bad as any)).toThrow();
+    });
+});
