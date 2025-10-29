@@ -1,5 +1,6 @@
 import { IncidentTypeSchema } from "../src/types/claimSchemas";
 import { PolicySchema } from "../src/types/claimSchemas";
+import { ClaimSchema } from "../src/types/claimSchemas";
 
 describe("IncidentTypeSchema", () => {
     it("should validate valid incident types", () => {
@@ -90,3 +91,15 @@ describe("PolicySchema", () => {
         expect(() => PolicySchema.parse(bad as any)).toThrow();
     });
 });
+
+describe("ClaimSchema", () => {
+    it ("validates a valid claim", () => {
+        const validClaim = {
+            policyId: "P-001",
+            incidentType: "theft",
+            incidentDate: new Date("2023-06-15"),
+            amountClaimed: 2500
+        };
+        expect(() => ClaimSchema.parse(validClaim)).not.toThrow();
+    });
+})
