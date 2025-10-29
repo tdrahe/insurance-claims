@@ -47,3 +47,9 @@ Insurance Claim Evaluation System - an incoming claim is validated, matched to a
 - [ ] Integrate with external databases for policy and claim storage
 - [ ] Enhance logging and monitoring for claim evaluations
 - [ ] Time went a lot faster than I thought it would, I would have liked to also better elaborate documentation.
+
+## Decisions
+- TypeScript was chosen for its strong typing and ability to catch errors at compile time.
+- Zod was used for schema validation to ensure incoming claims conform to expected structures.
+- The project structure was designed to separate concerns, making it easier to maintain and extend.
+- Unit tests and integration tests to ensure the reliability of the system and extendibility.
