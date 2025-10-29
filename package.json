@@ -1,0 +1,36 @@
+{
+  "name": "insurance-claims",
+  "version": "1.0.0",
+  "description": "- [Overview](#overview) - [Features](#features) - [Installation](#installation) - [Usage](#usage)",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS='--require ts-node/register' jest",
+    "test:watch": "NODE_OPTIONS='--require ts-node/register' jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdrahe/insurance-claims.git"
+  },
+  "keywords": [],
+  "author": "Tyler Rahe",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tdrahe/insurance-claims/issues"
+  },
+  "homepage": "https://github.com/tdrahe/insurance-claims#readme",
+  "dependencies": {
+    "typescript": "^5.9.3",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.9.2",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2"
+  }
+}

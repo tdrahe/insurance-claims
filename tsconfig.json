@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* === Core Settings === */
+    "target": "ES2020",                       /* Modern JS output */
+    "module": "CommonJS",                     /* Node.js compatible module system */
+    "rootDir": "src",                         /* Source code folder */
+    "outDir": "dist",                         /* Compiled JS output folder */
+    "moduleResolution": "node",               /* Resolve node-style imports */
+    "esModuleInterop": true,                  /* Allow default import from CJS modules */
+    "forceConsistentCasingInFileNames": true, /* Enforce consistent import casing */
+    "strict": true,                           /* Full type safety */
+    "skipLibCheck": true,                     /* Skip type checking node_modules for speed */
+    "resolveJsonModule": true,                /* Allow importing JSON files */
+    "isolatedModules": true,                  /* Safer transpilation for ts-jest and ts-node */
+
+    /* === Output & Clean Imports === */
+    "noEmitOnError": true,                    /* Prevent emitting JS if there are TS errors */
+    "declaration": true,                      /* Emit .d.ts files (optional, for libs) */
+    "removeComments": false,                  /* Keep comments for debugging */
+    "sourceMap": true,                        /* Helpful for debugging stack traces */
+
+    /* === Node.js Specific === */
+    "types": ["node", "jest"],                /* Include Node + Jest types */
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage"
+  ]
+}

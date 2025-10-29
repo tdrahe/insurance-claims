@@ -4,7 +4,8 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
+- [RunApp](#runApp)
+- [WishList](#wishlist)
 
 ## Overview
 Insurance Claim Evaluation System - an incoming claim is validated, matched to a policy, processed through business logic, and outputs a claim evaluation. 
@@ -14,15 +15,34 @@ Insurance Claim Evaluation System - an incoming claim is validated, matched to a
 ## Features
 - src/: Source code for the insurance claim evaluation system.
     - types/: Type definitions for claims, policies, and evaluation results.
+    - logic/: Business logic for evaluating claims against policies.
+    - data/: Sample data for policies.
+    - index.ts: Main entry point for the evaluation system.
 - tests/: Unit tests and integration tests for the system.
+- package.json: Project metadata and dependencies.
+- tsconfig.json: TypeScript configuration file.
+- README.md: Project documentation.
 
 ## Installation
 1. Clone the repository
 2. Install dependencies using your preferred package manager (e.g., npm, yarn)
-    a. npm install
-3. Run the build script to compile the source code
-    a. npm run build
+    - npm install
 4. Run tests to ensure everything is set up correctly
-    a. npm test
-5. Start the application
-6. Refer to the documentation for configuration options
+    - npm test
+5. Trubble shooting
+    - Ensure Node.js and TypeScript are installed
+    - Check for any missing dependencies in package.json
+
+## RunApp
+1. Ensure TypeScript is compiled:
+   - npx tsc
+2. To change the raw incoming claim
+   - Modify the rawClaim object in runHandleClaim.ts
+3. Run the application using ts-node:
+   - npx ts-node runHandleClaim.ts
+
+## WishList
+- [ ] Implement a user interface for easier claim submission and policy submission
+- [ ] Integrate with external databases for policy and claim storage
+- [ ] Enhance logging and monitoring for claim evaluations
+- [ ] Time went a lot faster than I thought it would, I would have liked to also better elaborate documentation.
