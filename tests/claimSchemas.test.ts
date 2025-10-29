@@ -29,4 +29,64 @@ describe("PolicySchema", () => {
         };
         expect(() => PolicySchema.parse(validPolicy)).not.toThrow();
     });
+
+    it("throws for negative deductible", () => {
+        const bad = {
+            policyId: "P-002",
+            startDate: new Date(),
+            endDate: new Date(),
+            deductible: -10,
+            coverageLimit: 1000,
+            coveredIncidents: ["theft"]
+        };
+        expect(() => PolicySchema.parse(bad)).toThrow();
+    });
+
+    it("throws for non-positive coverageLimit", () => {
+        const bad = {
+            policyId: "P-003",
+            startDate: new Date(),
+            endDate: new Date(),
+            deductible: 0,
+            coverageLimit: 0,
+            coveredIncidents: ["fire"]
+        };
+        expect(() => PolicySchema.parse(bad)).toThrow();
+    });
+
+    it("throws when coveredIncidents contains an invalid incident", () => {
+        const bad = {
+            policyId: "P-004",
+            startDate: new Date(),
+            endDate: new Date(),
+            deductible: 100,
+            coverageLimit: 1000,
+            coveredIncidents: ["earthquake"] // invalid per IncidentTypeSchema
+        };
+        expect(() => PolicySchema.parse(bad)).toThrow();
+    });
+
+    it("throws when date fields are not Date objects", () => {
+        const bad = {
+            policyId: "P-005",
+            startDate: "2023-01-01",
+            endDate: "2024-01-01",
+            deductible: 100,
+            coverageLimit: 1000,
+            coveredIncidents: ["theft"]
+        };
+        expect(() => PolicySchema.parse(bad)).toThrow();
+    });
+
+    it("throws when required fields are missing", () => {
+        const bad = {
+            startDate: new Date(),
+            endDate: new Date(),
+            deductible: 100,
+            coverageLimit: 1000,
+            coveredIncidents: ["theft"]
+        };
+        // missing policyId
+        expect(() => PolicySchema.parse(bad as any)).toThrow();
+    });
 });
