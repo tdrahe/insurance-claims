@@ -38,6 +38,7 @@ Insurance Claim Evaluation System - an incoming claim is validated, matched to a
    - npx tsc
 2. To change the raw incoming claim
    - Modify the rawClaim object in runHandleClaim.ts
+   - you can also modify the policies it will be evaluated against in src/data/policies.ts
 3. Run the application using ts-node:
    - npx ts-node runHandleClaim.ts
 
