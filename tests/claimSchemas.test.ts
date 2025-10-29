@@ -102,4 +102,44 @@ describe("ClaimSchema", () => {
         };
         expect(() => ClaimSchema.parse(validClaim)).not.toThrow();
     });
+
+    it("throws for non-positive amountClaimed", () => {
+        const bad = {
+            policyId: "P-002",
+            incidentType: "fire",
+            incidentDate: new Date(),
+            amountClaimed: 0
+        };
+        expect(() => ClaimSchema.parse(bad)).toThrow();
+    });
+
+    it("throws when incidentType is invalid", () => {
+        const bad = {
+            policyId: "P-003",
+            incidentType: "flood", // invalid per IncidentTypeSchema
+            incidentDate: new Date(),
+            amountClaimed: 1000
+        };
+        expect(() => ClaimSchema.parse(bad)).toThrow();
+    });
+
+    it("throws when incidentDate is not a Date object", () => {
+        const bad = {
+            policyId: "P-004",
+            incidentType: "accident",
+            incidentDate: "2023-06-15",
+            amountClaimed: 500
+        };
+        expect(() => ClaimSchema.parse(bad)).toThrow();
+    });
+
+    it("throws when required fields are missing", () => {
+        const bad = {
+            incidentType: "theft",
+            incidentDate: new Date(),
+            amountClaimed: 300
+        };
+        // missing policyId
+        expect(() => ClaimSchema.parse(bad as any)).toThrow();
+    });
 })
